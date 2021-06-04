@@ -20,18 +20,28 @@ $name = $_GET['name'];
 $mail = $_GET['mail'];
 $age = $_GET['age'];
 
-if(empty($_GET['name']) || empty($_GET['mail']) || empty($_GET['age'])) { // se è vero che name, mail e age sono vuoti
-  $string = 'Accesso negato';
-}
-else(
-strpos($mail, '@') !== false && strpos($mail, '.') !== false 
-&& strlen($name>3) 
-&& is_numeric($age)
-){
-  $string = 'Accesso eseguito'
-};
+// se è vero che name, mail e age sono vuoti
+if (empty($name) || empty($mail) || empty($age)) { 
 
-echo $string;
+  echo 'Accesso negato. Inserire i dati';
+
+} elseif (strlen($name)<=3) {
+
+  echo 'Errore: nome troppo corto';
+
+} elseif (strpos($mail, '@') === false || strpos($mail, '.') === false) {
+
+  echo 'Errore: mail non valida';
+
+}  elseif (!is_numeric($age)) {
+
+  echo 'Errore: età non corretta';
+
+} else {
+
+  echo 'Accesso eseguito';
+
+}
 
 ?>
 
